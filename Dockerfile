@@ -1,6 +1,9 @@
 FROM php:8.2-apache
 
-# Apache ko public folder serve karne ko bolo
+# mysqli enable karo
+RUN docker-php-ext-install mysqli
+
+# public folder ko serve karo
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
